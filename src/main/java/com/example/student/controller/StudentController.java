@@ -47,6 +47,18 @@ public class StudentController {
         return "Deleted successfully";
     }
 
+
+    @GetMapping("/department/{dept}")
+    public List<Student> getByDepartment(@PathVariable String dept) {
+        return service.getStudentsByDepartment(dept);
+    }
+
+    @GetMapping("/age/{age}")
+    public List<Student> getByAge(@PathVariable int age) {
+        return service.getStudentsByAge(age);
+    }
+
+
 }
 
 

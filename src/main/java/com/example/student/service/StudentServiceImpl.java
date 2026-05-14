@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class StudentServiceImpl {
+public class StudentServiceImpl implements StudentService {
     private final StudentRepository repo;
 
     public StudentServiceImpl(StudentRepository repo) {
@@ -45,5 +45,13 @@ public class StudentServiceImpl {
         repo.delete(student);
     }
 
+    @Override
+    public List<Student> getStudentsByDepartment(String department) {
+        return repo.findByDepartment(department);
+    }
 
+    @Override
+    public List<Student> getStudentsByAge(int age) {
+        return repo.findByAgeGreaterThan(age);
+    }
 }
