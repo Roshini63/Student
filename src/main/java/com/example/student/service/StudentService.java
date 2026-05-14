@@ -10,6 +10,12 @@ public interface StudentService {
     Student getStudentById(Long id);
     Student updateStudent(Long id, Student student);
     void deleteStudent(Long id);
+
     List<Student> getStudentsByDepartment(String department);
     List<Student> getStudentsByAge(int age);
+
+    Student getStudentByEmail(String email);
+    long countStudentsByDepartment(String department);
+    void deleteAllStudents();
+
 }

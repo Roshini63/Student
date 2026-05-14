@@ -10,4 +10,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     List<Student> findByAgeGreaterThan(int age);
 
     Student findByEmail(String email);
+
+    long countByDepartment(String department);
+
 }

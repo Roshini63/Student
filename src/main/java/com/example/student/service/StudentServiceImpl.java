@@ -54,4 +54,19 @@ public class StudentServiceImpl implements StudentService {
     public List<Student> getStudentsByAge(int age) {
         return repo.findByAgeGreaterThan(age);
     }
+
+    @Override
+    public Student getStudentByEmail(String email) {
+        return repo.findByEmail(email);
+    }
+
+    @Override
+    public long countStudentsByDepartment(String department) {
+        return repo.countByDepartment(department);
+    }
+
+    @Override
+    public void deleteAllStudents() {
+        repo.deleteAll();
+    }
 }

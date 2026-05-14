@@ -58,6 +58,21 @@ public class StudentController {
         return service.getStudentsByAge(age);
     }
 
+    @GetMapping("/email/{email}")
+    public Student getByEmail(@PathVariable String email) {
+        return service.getStudentByEmail(email);
+    }
+
+    @GetMapping("/count/{dept}")
+    public long countByDepartment(@PathVariable String dept) {
+        return service.countStudentsByDepartment(dept);
+    }
+
+    @DeleteMapping("/all")
+    public String deleteAll() {
+        service.deleteAllStudents();
+        return "All students deleted";
+    }
 
 }
 
