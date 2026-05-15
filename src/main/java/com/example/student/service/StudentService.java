@@ -1,6 +1,8 @@
 package com.example.student.service;
 
 import com.example.student.dto.StudentDTO;
+import com.example.student.dto.StudentRequest;
+import com.example.student.dto.StudentResponse;
 import com.example.student.entity.Student;
 
 import java.util.List;
@@ -21,5 +23,11 @@ public interface StudentService {
 
     List<StudentDTO> getAllStudents();
     StudentDTO createStudent(StudentDTO studentDTO);
+
+
+    StudentResponse registerStudent(StudentRequest request);
+
+    StudentResponse login(String email, String password);
+
 
 }

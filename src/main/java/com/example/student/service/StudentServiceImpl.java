@@ -1,6 +1,8 @@
 package com.example.student.service;
 
 import com.example.student.dto.StudentDTO;
+import com.example.student.dto.StudentRequest;
+import com.example.student.dto.StudentResponse;
 import com.example.student.entity.Student;
 import com.example.student.exception.ResourceNotFoundException;
 import com.example.student.mapper.StudentMapper;
@@ -87,4 +89,23 @@ public class StudentServiceImpl implements StudentService {
                 .map(StudentMapper::toDTO)
                 .toList();
     }
+
+    @Override
+    public StudentResponse registerStudent(StudentRequest request) {
+        Student student = StudentMapper.toEntity(request);
+        Student saved = repo.save(student);
+        return StudentMapper.toResponse(saved);
+    }
+
+    @Override
+    public StudentResponse login(String email, String password) {
+        Student student = repo.findByEmail(email);
+
+        if (student == null || !student.getPassword().equals(password)) {
+            throw new RuntimeException("Invalid credentials");
+        }
+
+        return StudentMapper.toResponse(student);
+    }
+
     }

@@ -2,6 +2,8 @@ package com.example.student.controller;
 
 
 import com.example.student.dto.StudentDTO;
+import com.example.student.dto.StudentRequest;
+import com.example.student.dto.StudentResponse;
 import com.example.student.entity.Student;
 import com.example.student.service.StudentService;
 import jakarta.validation.Valid;
@@ -90,6 +92,19 @@ public class StudentController {
     @PostMapping
     public StudentDTO create(@RequestBody @Valid StudentDTO dto) {
         return service.createStudent(dto);
+    }
+
+    @PostMapping("/register")
+    public StudentResponse register(@RequestBody @Valid StudentRequest request) {
+        return service.registerStudent(request);
+    }
+
+    @PostMapping("/login")
+    public StudentResponse login(
+            @RequestParam String email,
+            @RequestParam String password) {
+
+        return service.login(email, password);
     }
 }
 
