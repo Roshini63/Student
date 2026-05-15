@@ -1,7 +1,9 @@
 package com.example.student.service;
 
+import com.example.student.dto.StudentDTO;
 import com.example.student.entity.Student;
 import com.example.student.exception.ResourceNotFoundException;
+import com.example.student.mapper.StudentMapper;
 import com.example.student.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
@@ -20,10 +22,10 @@ public class StudentServiceImpl implements StudentService {
         return repo.save(student);
     }
 
-    @Override
-    public List<Student> getAllStudents() {
-        return repo.findAll();
-    }
+//    @Override
+//    public List<Student> getAllStudents() {
+//        return repo.findAll();
+//    }
 
     @Override
     public Student getStudentById(Long id) {
@@ -69,4 +71,20 @@ public class StudentServiceImpl implements StudentService {
     public void deleteAllStudents() {
         repo.deleteAll();
     }
-}
+
+
+    @Override
+    public StudentDTO createStudent(StudentDTO studentDTO) {
+        Student student = StudentMapper.toEntity(studentDTO);
+        Student saved = repo.save(student);
+        return StudentMapper.toDTO(saved);
+    }
+
+    @Override
+    public List<StudentDTO> getAllStudents() {
+        return repo.findAll()
+                .stream()
+                .map(StudentMapper::toDTO)
+                .toList();
+    }
+    }

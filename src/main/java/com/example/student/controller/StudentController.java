@@ -1,8 +1,10 @@
 package com.example.student.controller;
 
 
+import com.example.student.dto.StudentDTO;
 import com.example.student.entity.Student;
 import com.example.student.service.StudentService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,10 +25,10 @@ public class StudentController {
     }
 
     // READ ALL
-    @GetMapping
-    public List<Student> getAll() {
-        return service.getAllStudents();
-    }
+//    @GetMapping
+//    public List<Student> getAll() {
+//        return service.getAllStudents();
+//    }
 
     // READ ONE
     @GetMapping("/{id}")
@@ -74,6 +76,21 @@ public class StudentController {
         return "All students deleted";
     }
 
+
+//    @PostMapping
+//    public StudentDTO create(@RequestBody StudentDTO dto) {
+//        return service.createStudent(dto);
+//    }
+
+    @GetMapping
+    public List<StudentDTO> getAll() {
+        return service.getAllStudents();
+    }
+
+    @PostMapping
+    public StudentDTO create(@RequestBody @Valid StudentDTO dto) {
+        return service.createStudent(dto);
+    }
 }
 
 

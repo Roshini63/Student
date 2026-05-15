@@ -1,12 +1,13 @@
 package com.example.student.service;
 
+import com.example.student.dto.StudentDTO;
 import com.example.student.entity.Student;
 
 import java.util.List;
 
 public interface StudentService {
     Student createStudent(Student student);
-    List<Student> getAllStudents();
+//    List<Student> getAllStudents();
     Student getStudentById(Long id);
     Student updateStudent(Long id, Student student);
     void deleteStudent(Long id);
@@ -17,5 +18,8 @@ public interface StudentService {
     Student getStudentByEmail(String email);
     long countStudentsByDepartment(String department);
     void deleteAllStudents();
+
+    List<StudentDTO> getAllStudents();
+    StudentDTO createStudent(StudentDTO studentDTO);
 
 }
