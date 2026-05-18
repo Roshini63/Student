@@ -1,3 +1,15 @@
+package com.example.student.controller;
+
+import com.example.student.dto.StudentDTO;
+import com.example.student.dto.StudentRequest;
+import com.example.student.dto.StudentResponse;
+import com.example.student.entity.Student;
+import com.example.student.service.StudentService;
+import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/students")
 public class StudentController {
