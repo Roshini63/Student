@@ -1,26 +1,14 @@
-package com.example.student.entity;
+package com.example.student.dto;
 
-import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
-@Entity
-@Table(name = "courses")
-public class Course {
+public class CourseRequest {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    @NotBlank
     private String courseName;
+
     private String duration;
     private String trainer;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getCourseName() {
         return courseName;

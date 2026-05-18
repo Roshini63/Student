@@ -1,9 +1,11 @@
 package com.example.student.controller;
 
-import com.example.student.entity.Course;
+import com.example.student.dto.CourseRequest;
+import com.example.student.dto.CourseResponse;
 import com.example.student.service.CourseService;
 import org.springframework.web.bind.annotation.*;
 
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -17,12 +19,30 @@ public class CourseController {
     }
 
     @PostMapping
-    public Course createCourse(@RequestBody Course course) {
-        return service.createCourse(course);
+    public CourseResponse create(@RequestBody @Valid CourseRequest request) {
+        return service.createCourse(request);
     }
 
     @GetMapping
-    public List<Course> getAllCourses() {
+    public List<CourseResponse> getAll() {
         return service.getAllCourses();
+    }
+
+    @GetMapping("/{id}")
+    public CourseResponse getById(@PathVariable Long id) {
+        return service.getCourseById(id);
+    }
+
+    @PutMapping("/{id}")
+    public CourseResponse update(
+            @PathVariable Long id,
+            @RequestBody CourseRequest request) {
+        return service.updateCourse(id, request);
+    }
+
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable Long id) {
+        service.deleteCourse(id);
+        return "Course deleted successfully";
     }
 }
